@@ -21,6 +21,40 @@
         margin:auto;
     }
 </style>
+<script>
+    function verificainput() {
+         if(document.getElementById("cep").value == "" || document.getElementById("cpf").value == ""){
+            alert("nao é possivel cadastrar sem preencher todos os campos!");
+         }
+    }
+    function verificanome() {
+         if(document.getElementById("cep").value == ""){
+            alert("é preciso preencher o campo NOME!");
+         }
+    }
+    function verificacpf() {
+         if(document.getElementById("cpf").value == ""){
+            alert("é preciso preencher o campo CPF!");
+         }
+    }
+
+    function verificainput2() {
+         if(document.getElementById("rastre").value == "" || document.getElementById("inserircep").value == ""){
+            alert("nao é possivel inserir sem preencher todos os campos!");
+         }
+    }
+    function verificaentre() {
+         if(document.getElementById("rastre").value == ""){
+            alert("é preciso preencher o campo Rastreador!");
+         }
+    }
+    function verificacep() {
+         if(document.getElementById("inserircep").value == ""){
+            alert("é preciso preencher o campo CEP!");
+         }
+    }
+
+</script>
 <?php
     $conn = new PDO("mysql:dbname=entrega;host=localhost", "root", "");
 ?>
@@ -34,13 +68,18 @@
             </div>
         </div>
         <div class="row">
-            <div class="col">                            
+            <div class="col"> 
+                
+            
+
                 <form method="POST">
                     <p class="h3 text-center">
                         Cadastro de Entregadores
                     </p>
-                    <input type="text" class="form-control" name="nome" placeholder="Nome Entregador">
-                    <input type="text" class="form-control" name="cpf" placeholder="CPF Entregador">
+                     
+                    <input type="text" class="form-control" name="nome" id="cep" placeholder="Nome Entregador" size="10" maxlength="30"
+               onblur="verificanome();">
+                    <input type="text" class="form-control" name="cpf" id="cpf" placeholder="CPF Entregador" size="10" maxlength="14" onblur="verificacpf();">
                     <select class="form-control" name="bairro">
                     <option value="Boa Vista">Boa Vista</option>
                     <option value="Heliopolis">Heliopolis</option>
@@ -59,7 +98,7 @@
                     <option value="Vila do Quartel">Vila do Quartel</option>
                     </select>
                     <div style="display:flex; justify-content:right;">
-                        <button class="btn btn-outline-primary mt-2" type="submit">
+                        <button class="btn btn-outline-primary mt-2" type="submit" onclick="verificainput();">
                             Criar
                         </button>   
                     </div>                
@@ -103,9 +142,9 @@
                     Cadastro de Encomendas
                 </h2>
                 <form method="POST">
-                    <input class="form-control" type="text" name="rastreador" placeholder="Rastreador da Encomenda">
-                    <input class="form-control"  type="text" name="cep" placeholder="Insira o CEP">
-                    <button class="btn btn-primary" type="submit">Inserir</button>
+                    <input class="form-control" type="text" name="rastreador" id="rastre" placeholder="Rastreador da Encomenda" onblur="verificaentre();" >
+                    <input class="form-control"  type="text" name="cep" id="inserircep" placeholder="Insira o CEP" onblur="verificacep();">
+                    <button class="btn btn-primary" type="submit" onclick="verificainput2();">Inserir</button>
                 </form>
             </div>
             <div class="col">
